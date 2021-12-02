@@ -1,7 +1,7 @@
 from ursina import *
 
 app = Ursina()
-window.fullscreen = True
+window.fullscreen = False
 player = Entity(model='quad', texture='assets\player',
                 collider='box', y=5, scale=2)
 bg = Entity(model='quad', texture='assets\BG', scale=36, z=1)
@@ -53,7 +53,7 @@ def update():
 
 def input(key):
     if key == 'space':
-        e = Entity(y=player.y+0.6, x=player.x+1.3, model='cube', scale=1,
+        e = Entity(y=player.y, x=player.x+1, model='cube', scale=1,
                    texture='assets\Bullet', collider='cube')
         e.animate_x(30, duration=2, curve=curve.linear)
         invoke(destroy, e, delay=2)
