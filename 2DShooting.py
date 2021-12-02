@@ -1,7 +1,7 @@
 from ursina import *
 
 app = Ursina()
-window.fullscreen = False
+window.fullscreen = True
 player = Entity(model='quad', texture='assets\player',
                 collider='box', y=5, scale=2)
 bg = Entity(model='quad', texture='assets\BG', scale=36, z=1)
