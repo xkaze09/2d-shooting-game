@@ -17,11 +17,12 @@ class MenuMenu(Entity):
         self.help_menu = Entity(parent=self, enabled=False)
 
         # Add a background. You can change 'shore' to a different texture of you'd like.
-        # self.background = Sprite('shore', color=color.dark_gray, z=1)
+        self.background = Sprite(
+            '/assets/target1.png/', color=color.dark_gray, z=1)
 
         # [MAIN MENU] WINDOW START
         # Title of our menu
-        Text("MAIN MENU", parent=self.main_menu, y=0.4, x=0, origin=(0, 0))
+        Text("Virus Slayer", parent=self.main_menu, y=0.4, x=0, origin=(0, 0))
 
         def start_game_btn():
             self.main_menu.disable()
