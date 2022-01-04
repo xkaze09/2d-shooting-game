@@ -1,6 +1,7 @@
 from ursina import *
 
-app = Ursina()
+# Uncomment to test game without main menu
+# app = Ursina()
 window.fullscreen = True
 player = Entity(model='quad', texture='assets\player',
                 collider='box', y=5, scale=2)
@@ -64,5 +65,5 @@ text = Text(text='')
 text = Text(text=f"Score: {score}", position=(-.65, .4),
             origin=(0, 0), scale=2, color=color.yellow, background=True)
 
-
-app.run()
+# Uncomment to test game without main menu
+# app.run()
