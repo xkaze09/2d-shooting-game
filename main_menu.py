@@ -13,7 +13,7 @@ class MenuMenu(Entity):
 
         # Create empty entities that will be parents of our menus content
         self.main_menu = Entity(parent=self, enabled=True)
-        self.options_menu = Entity(parent=self, enabled=False)
+        self.high_score_menu = Entity(parent=self, enabled=False)
         self.help_menu = Entity(parent=self, enabled=False)
 
         # Add a background. You can change 'shore' to a different texture of you'd like.
@@ -26,15 +26,16 @@ class MenuMenu(Entity):
 
         def start_game_btn():
             self.main_menu.disable()
+            self.background.disable()
             import app
 
         # Reference of our action function for quit button
         def quit_game():
             application.quit()
 
-        # Reference of our action function for options button
-        def options_menu_btn():
-            self.options_menu.enable()
+        # Reference of our action function for high_score button
+        def high_score_menu_btn():
+            self.high_score_menu.enable()
             self.main_menu.disable()
 
         # Reference of our action function for help button
@@ -45,26 +46,27 @@ class MenuMenu(Entity):
         # Button list
         ButtonList(button_dict={
             "Start": Func(start_game_btn),
-            "Options": Func(options_menu_btn),
+            "High Scores": Func(high_score_menu_btn),
             "Help": Func(help_menu_btn),
             "Exit": Func(quit_game)
         }, y=0, parent=self.main_menu)
         # [MAIN MENU] WINDOW END
 
-        # [OPTIONS MENU] WINDOW START
+        # [high_score MENU] WINDOW START
         # Title of our menu
-        Text("OPTIONS MENU", parent=self.options_menu, y=0.4, x=0, origin=(0, 0))
+        Text("High Scores", parent=self.high_score_menu,
+             y=0.4, x=0, origin=(0, 0))
 
         # Reference of our action function for back button
-        def options_back_btn_action():
+        def high_score_back_btn_action():
             self.main_menu.enable()
-            self.options_menu.disable()
+            self.high_score_menu.disable()
 
         # Button
-        Button("Back", parent=self.options_menu, y=-0.3, scale=(0.1, 0.05), color=rgb(50, 50, 50),
-               on_click=options_back_btn_action)
+        Button("Back", parent=self.high_score_menu, y=-0.3, scale=(0.1, 0.05), color=rgb(50, 50, 50),
+               on_click=high_score_back_btn_action)
 
-        # [OPTIONS MENU] WINDOW END
+        # [HIGH SCORES MENU] WINDOW END
 
         # [HELP MENU] WINDOW START
         # Title of our menu
@@ -77,7 +79,7 @@ class MenuMenu(Entity):
 
         # Button list
         ButtonList(button_dict={
-            "Gameplay": Func(print_on_screen, "You clicked on Gameplay help button!", position=(0, .1), origin=(0, 0)),
+            "About": Func(print_on_screen, "You clicked on Gameplay help button!", position=(0, .1), origin=(0, 0)),
             "Battle": Func(print_on_screen, "You clicked on Battle help button!", position=(0, .1), origin=(0, 0)),
             "Control": Func(print_on_screen, "You clicked on Control help button!", position=(0, .1), origin=(0, 0)),
             "Back": Func(help_back_btn_action)
@@ -100,12 +102,12 @@ class MenuMenu(Entity):
                 # Close app
                 application.quit()
 
-        # If our options menu enabled and we press [Escape]
-        if self.options_menu.enabled:
+        # If our high_score menu enabled and we press [Escape]
+        if self.high_score_menu.enabled:
             if key == "escape":
-                # Close options window and show main menu
+                # Close high_score window and show main menu
                 self.main_menu.enable()
-                self.options_menu.disable()
+                self.high_score_menu.disable()
 
         # If our help menu enabled and we press [Escape]
         if self.help_menu.enabled:
