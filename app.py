@@ -9,6 +9,8 @@ bg = Entity(model='quad', texture='assets\BG', scale=36, z=1)
 target = Entity(model='cube', texture='assets\\target1',
                 collider='box', scale=2, x=20, y=-10)
 
+# update and input set to an empty entity for it to be called automatically
+e = Entity()
 
 targets = []
 
@@ -65,5 +67,7 @@ text = Text(text='')
 text = Text(text=f"Score: {score}", position=(-.65, .4),
             origin=(0, 0), scale=2, color=color.yellow, background=True)
 
+e.update = update
+e.input = input
 # Uncomment to test game without main menu
 # app.run()
