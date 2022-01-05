@@ -4,10 +4,10 @@ from ursina import *
 # app = Ursina()
 window.fullscreen = True
 player = Entity(model='quad', texture='assets\player',
-                collider='box', y=5, scale=2)
+                collider='box', y=5, scale=3)
 bg = Entity(model='quad', texture='assets\BG', scale=36, z=1)
 target = Entity(model='cube', texture='assets\\target1',
-                collider='box', scale=2, x=20, y=-10)
+                collider='box', scale=3, x=20, y=-10)
 
 # update and input set to an empty entity for it to be called automatically
 e = Entity()

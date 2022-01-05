@@ -74,14 +74,34 @@ class MenuMenu(Entity):
 
         # Reference of our action function for back button
         def help_back_btn_action():
+            about.enabled = False
+            controls.enabled = False
             self.main_menu.enable()
             self.help_menu.disable()
 
+        about = Text('Hello there')
+        about.enabled = False
+        about.position = (0, .1)
+        about.origin = (0, 0)
+
+        def enable_about_info():
+            controls.enabled = False
+            about.enabled = True
+
+        controls = Text("WASD to move.\nSpace to shoot.\nEasy peasy!")
+        controls.enabled = False
+        controls.position = (0, .1)
+        controls.origin = (0, 0)
+
+        def enable_controls_info():
+            about.enabled = False
+            controls.enabled = True
+
         # Button list
         ButtonList(button_dict={
-            "About": Func(print_on_screen, "You clicked on Gameplay help button!", position=(0, .1), origin=(0, 0)),
-            "Battle": Func(print_on_screen, "You clicked on Battle help button!", position=(0, .1), origin=(0, 0)),
-            "Control": Func(print_on_screen, "You clicked on Control help button!", position=(0, .1), origin=(0, 0)),
+            "About": Func(enable_about_info),
+            # "Battle": Func(print_on_screen, "You clicked on Battle help button!", position=(0, .1), origin=(0, 0)),
+            "Controls": Func(enable_controls_info),
             "Back": Func(help_back_btn_action)
         }, y=0, parent=self.help_menu)
         # [HELP MENU] WINDOW END
