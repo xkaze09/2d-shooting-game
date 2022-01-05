@@ -52,7 +52,7 @@ class MenuMenu(Entity):
         }, y=0, parent=self.main_menu)
         # [MAIN MENU] WINDOW END
 
-        # [high_score MENU] WINDOW START
+        # [HIGH SCORE MENU] WINDOW START
         # Title of our menu
         Text("High Scores", parent=self.high_score_menu,
              y=0.4, x=0, origin=(0, 0))
