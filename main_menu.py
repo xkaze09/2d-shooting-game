@@ -22,7 +22,7 @@ class MenuMenu(Entity):
 
         # [MAIN MENU] WINDOW START
         # Title of our menu
-        Text("Virus Slayer", parent=self.main_menu, y=0.4, x=0, origin=(0, 0))
+        Text("Virus Fighter", parent=self.main_menu, y=0.4, x=0, origin=(0, 0))
 
         def start_game_btn():
             self.main_menu.disable()
@@ -124,7 +124,7 @@ class MenuMenu(Entity):
 
 
 # Setup window title
-window.title = "Virus Slayer"
+window.title = "Virus Fighter"
 
 # Init application
 app = Ursina()
