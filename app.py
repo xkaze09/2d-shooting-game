@@ -77,8 +77,9 @@ def update():
                         origin=(0, 0), scale=2, color=color.yellow, background=True)
             write_high_score(score)
     t = player.intersects()
-    if t.hit and t.entity.scale == 2:
-        quit()
+    if t.hit and t.entity.scale == 3:
+        import main_menu
+        main_menu.MenuMenu.enabled = True
 
 
 def input(key):

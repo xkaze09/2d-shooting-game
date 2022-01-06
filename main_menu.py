@@ -48,6 +48,13 @@ class MenuMenu(Entity):
             self.high_score_menu.enable()
             self.main_menu.disable()
 
+        # Reference of our action function for resetting high score button
+        def reset_high_score():
+            with open(SCORE_FILE, "r+") as f:
+                f.write(str(0))
+                high_score_text.enabled = False
+                read_high_score()
+
         # Reference of our action function for help button
         def help_menu_btn():
             self.help_menu.enable()
@@ -67,14 +74,17 @@ class MenuMenu(Entity):
         Text("High Score", parent=self.high_score_menu,
              y=0.4, x=0, origin=(0, 0))
 
+        Button("Reset High Score", parent=self.high_score_menu, y=-0.3, scale=(0.2, 0.05), color=rgb(50, 50, 50),
+               on_click=reset_high_score)
+
         # Reference of our action function for back button
         def high_score_back_btn_action():
             high_score_text.enabled = False
             self.main_menu.enable()
             self.high_score_menu.disable()
 
-        # Button
-        Button("Back", parent=self.high_score_menu, y=-0.3, scale=(0.1, 0.05), color=rgb(50, 50, 50),
+        # Back Button in Score Menu
+        Button("Back", parent=self.high_score_menu, y=-0.4, scale=(0.1, 0.05), color=rgb(50, 50, 50),
                on_click=high_score_back_btn_action)
 
         # [HIGH SCORES MENU] WINDOW END
