@@ -54,6 +54,8 @@ newTarget()
 camera.orthographic = True
 camera.fov = 20
 
+# Continuously run
+
 
 def update():
     global score, text
@@ -86,6 +88,8 @@ def update():
     if t.hit and t.entity.scale == 3:
         quit()
 
+# Reference for input by user
+
 
 def input(key):
     if key == 'space':
@@ -98,11 +102,14 @@ def input(key):
         invoke(destroy, e, delay=2)
 
 
+# Initializations for Score
 score = 0
 text = Text(text='')
 text = Text(text=f"Score: {score}", position=(-.65, .4),
             origin=(0, 0), scale=2, color=color.yellow, background=True)
 
+
+# Continuously called for user inputs and updates
 e.update = update
 e.input = input
 # Uncomment to test game without main menu
