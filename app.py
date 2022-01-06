@@ -4,6 +4,9 @@ from ursina import *
 # Uncomment to test game without main menu
 # app = Ursina()
 window.fullscreen = True
+a = Audio('/sound_effects/game_bgm.mp3/', pitch=1,
+          loop=True, autoplay=True, volume=0.3)
+print(a)
 player = Entity(model='quad', texture='assets\player',
                 collider='box', y=5, scale=3)
 bg = Entity(model='quad', texture='assets\BG', scale=36, z=1)
@@ -68,6 +71,9 @@ def update():
         target.x -= 4*time.dt
         touch = target.intersects()
         if touch.hit:
+            a = Audio('/sound_effects/hit_effect.mp3/',
+                      pitch=1, loop=False, autoplay=True)
+            print(a)
             targets.remove(target)
             destroy(target)
             destroy(touch.entity)
@@ -83,6 +89,9 @@ def update():
 
 def input(key):
     if key == 'space':
+        a = Audio('/sound_effects/shoot_effect.mp3/',
+                  pitch=1, loop=False, autoplay=True, volume=0.2)
+        print(a)
         e = Entity(y=player.y, x=player.x+1, model='cube', scale=1,
                    texture='assets\Bullet', collider='cube')
         e.animate_x(30, duration=2, curve=curve.linear)

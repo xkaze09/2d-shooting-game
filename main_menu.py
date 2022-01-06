@@ -28,12 +28,18 @@ class MenuMenu(Entity):
         # Background of Main Menu
         self.background = Sprite(
             '/assets/main_menu.png/', z=1)
-
+        # Background Music of Main Menu
+        a = Audio('/sound_effects/menu_bgm.mp3/',
+                  pitch=1, loop=False, autoplay=True)
+        print(a)
         # [MAIN MENU] WINDOW START
-        # Title of our menu
-        Text("Virus Fighter", parent=self.main_menu, y=0.4, x=0, origin=(0, 0))
+        # Welcome Message
+        Text("Team Arcadia Proudly Presents",
+             parent=self.main_menu, y=0.4, x=0, origin=(0, 0))
 
+        # Reference of action function to start game
         def start_game_btn():
+            a.stop()  # Stops menu background music
             self.main_menu.disable()
             self.background.disable()
             import app
@@ -101,7 +107,7 @@ class MenuMenu(Entity):
             self.help_menu.disable()
 
         # About section content
-        about = Text('Virus Fighter is a game developed by Team Arcadia. Inspired by 2D shooting games out there powered by Ursina Engine. \nThis game will bring out the tough and challenging battle of combating the viruses that planned to inhabit and bring chaos\nto the Earth. #GetVaccinated!')
+        about = Text("Virus Fighter is a game developed by Team Arcadia. Inspired by 2D shooting games out there powered by Ursina Engine. \nThis game will bring out the tough and challenging battle of combating the viruses that planned to inhabit and bring chaos\nto the Earth. #GetVaccinated! \n\nDisclaimer: We do not own any of the sounds used in this project as it is used for educational purposes only.\nCredits go to MapleStory's CODASOUND.")
         about.enabled = False
         about.position = (0, -.2)
         about.origin = (0, 0)
