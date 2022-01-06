@@ -3,6 +3,7 @@ from ursina import *
 
 # Uncomment to test game without main menu
 # app = Ursina()
+# Initializations of Entities to be Used
 window.fullscreen = True
 a = Audio('/sound_effects/game_bgm.mp3/', pitch=1,
           loop=True, autoplay=True, volume=0.3)
@@ -12,6 +13,7 @@ player = Entity(model='quad', texture='assets\player',
 bg = Entity(model='quad', texture='assets\BG', scale=36, z=1)
 target = Entity(model='cube', texture='assets\\target1',
                 collider='box', scale=3, x=20, y=-10)
+
 
 # Update and input set to an empty entity for it to be called automatically and continuously
 e = Entity()
@@ -54,9 +56,8 @@ newTarget()
 camera.orthographic = True
 camera.fov = 20
 
+
 # Continuously run
-
-
 def update():
     global score, text
     player.y += held_keys['w'] * 6 * time.dt
@@ -88,9 +89,8 @@ def update():
     if t.hit and t.entity.scale == 3:
         quit()
 
+
 # Reference for input by user
-
-
 def input(key):
     if key == 'space':
         a = Audio('/sound_effects/shoot_effect.mp3/',
@@ -108,9 +108,9 @@ text = Text(text='')
 text = Text(text=f"Score: {score}", position=(-.65, .4),
             origin=(0, 0), scale=2, color=color.yellow, background=True)
 
-
 # Continuously called for user inputs and updates
 e.update = update
 e.input = input
+
 # Uncomment to test game without main menu
 # app.run()

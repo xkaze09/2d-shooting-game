@@ -31,7 +31,7 @@ class MenuMenu(Entity):
         # Background Music of Main Menu
         a = Audio('/sound_effects/menu_bgm.mp3/',
                   pitch=1, loop=False, autoplay=True)
-        print(a)
+        print(a)  # Plays menu backgroind music
         # [MAIN MENU] WINDOW START
         # Welcome Message
         Text("Team Arcadia Proudly Presents",
