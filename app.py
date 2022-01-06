@@ -9,9 +9,25 @@ bg = Entity(model='quad', texture='assets\BG', scale=36, z=1)
 target = Entity(model='cube', texture='assets\\target1',
                 collider='box', scale=3, x=20, y=-10)
 
-# update and input set to an empty entity for it to be called automatically
+# Update and input set to an empty entity for it to be called automatically and continuously
 e = Entity()
 
+# Initialization of reading text file
+SCORE_FILE = "previous_score.txt"
+
+
+# Write new score to text file
+def write_score(score):
+    with open(SCORE_FILE, "w+") as f:
+        f.write(str(score - 1))
+        # previous_score = f.read()
+        # if previous_score == '':
+        #     f.write(str(0))
+        # elif int(previous_score) < score:
+        #     f.write(str(score - 1))  # Decrement by 1 to cancel t.hit execution
+
+
+# To store current targets appearing on the screen
 targets = []
 
 
@@ -49,6 +65,7 @@ def update():
             text.y = 10
             text = Text(text=f"Score: {score}", position=(-.65, .4),
                         origin=(0, 0), scale=2, color=color.yellow, background=True)
+            write_score(score)
     t = player.intersects()
     if t.hit and t.entity.scale == 2:
         quit()
