@@ -78,8 +78,7 @@ def update():
             write_high_score(score)
     t = player.intersects()
     if t.hit and t.entity.scale == 3:
-        import main_menu
-        main_menu.MenuMenu.enabled = True
+        quit()
 
 
 def input(key):
