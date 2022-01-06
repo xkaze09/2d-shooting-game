@@ -1,3 +1,4 @@
+import os
 from ursina import *
 
 # Uncomment to test game without main menu
@@ -13,30 +14,39 @@ target = Entity(model='cube', texture='assets\\target1',
 e = Entity()
 
 # Initialization of reading text file
-SCORE_FILE = "previous_score.txt"
+HIGH_SCORE_FILE = "high_score.txt"
+if not os.path.isfile(HIGH_SCORE_FILE):
+    with open(HIGH_SCORE_FILE, "w") as f:
+        f.write(str(0))
 
 
-# Write new score to text file
-def write_score(score):
-    with open(SCORE_FILE, "w+") as f:
-        f.write(str(score - 1))
-        # previous_score = f.read()
-        # if previous_score == '':
-        #     f.write(str(0))
-        # elif int(previous_score) < score:
-        #     f.write(str(score - 1))  # Decrement by 1 to cancel t.hit execution
+# Reads the current high score in text file
+def read_high_score():
+    with open(HIGH_SCORE_FILE, "r") as f:
+        hs = f.read()
+    return int(hs)
+
+
+# Overwrites current previous score if new is higher
+def write_high_score(new_high_score):
+    hs = read_high_score()
+    with open(HIGH_SCORE_FILE, "r+") as f:
+        if new_high_score > hs:
+            f.write(str(new_high_score-1))
 
 
 # To store current targets appearing on the screen
 targets = []
 
 
+# Calling this will spawn new targets
 def newTarget():
     new = duplicate(target, y=-5+(5124*time.dt) % 15)
     targets.append(new)
     invoke(newTarget, delay=1)
 
 
+# Spawns new targets
 newTarget()
 camera.orthographic = True
 camera.fov = 20
@@ -65,7 +75,7 @@ def update():
             text.y = 10
             text = Text(text=f"Score: {score}", position=(-.65, .4),
                         origin=(0, 0), scale=2, color=color.yellow, background=True)
-            write_score(score)
+            write_high_score(score)
     t = player.intersects()
     if t.hit and t.entity.scale == 2:
         quit()
