@@ -57,6 +57,7 @@ class MenuMenu(Entity):
         # Reference of our action function for resetting high score button
         def reset_high_score():
             with open(SCORE_FILE, "r+") as f:
+                f.truncate(0)
                 f.write(str(0))
                 high_score_text.enabled = False
                 read_high_score()
